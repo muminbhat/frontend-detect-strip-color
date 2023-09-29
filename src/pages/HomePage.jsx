@@ -1,12 +1,14 @@
 import React from 'react'
 import Hero from '../components/Hero'
-import StripCard from '../components/StripCard'
+import FeatureCard from '../components/FeatureCard'
+import Newsletter from '../components/Newsletter'
 
 const HomePage = () => {
   return (
     <>
     <Hero />
-    <StripCard />
+    <FeatureCard />
+    <Newsletter />
     </>
   )
 }
