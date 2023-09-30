@@ -27,7 +27,7 @@ const Hero = () => {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/analyser/samples/add",
+        "https://backend-stripu.onrender.com/api/analyser/samples/add",
         formDataToSend,
         {
           headers: {
@@ -77,7 +77,7 @@ const Hero = () => {
     try {
       // Use the 'sampleId' state to fetch results for a specific sample
       const response = await axios.get(
-        `http://127.0.0.1:8000/api/analyser/samples/${sampleId}/detail/`
+        `https://backend-stripu.onrender.com/api/analyser/samples/${sampleId}/detail/`
       );
       setResults(response.data);
       console.log(response.data);
