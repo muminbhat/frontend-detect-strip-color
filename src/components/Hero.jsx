@@ -244,7 +244,7 @@ onClick={fetchResults}>
 
             {results && (
               <div className="flex flex-auto flex-col justify-center items-center p-4 md:p-5">
-                <h2 className="text-gray-800 dark:text-gray-200">Showing Results For: <span className="font-semibold text-gray-800 dark:text-gray-200">{name}</span></h2>
+                <h2 className="text-gray-800 dark:text-gray-200">Showing Results For: <span className="font-semibold text-teal-600 dark:teal-gray-400">{name}</span></h2>
                 <div className="flex flex-auto flex-col justify-center items-center p-4 md:p-5">
                   {results.colors.map((color, index) => (
                     <div key={index}>

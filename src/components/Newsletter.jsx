@@ -27,7 +27,7 @@ const Newsletter = () => {
 
     try {
       const response = await axios.post(
-        'http://127.0.0.1:8000/api/newsletter/post/',
+        'https://backend-stripu.onrender.com/api/newsletter/post/',
         formData
       );
       if (response.status === 201) {
