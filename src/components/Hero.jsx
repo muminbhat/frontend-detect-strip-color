@@ -49,7 +49,7 @@ const Hero = () => {
       }, 1000);
       setBtn(true)
       swal.fire({
-        title: "Your Sample is Ready",
+        title: "Ready For Analyses",
         icon: "success",
         toast: true,
         timer: 6000,
@@ -234,7 +234,7 @@ const Hero = () => {
 {btn ? ( <div className="flex flex-auto flex-col justify-center items-center p-4 md:p-5"><button 
 className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-teal-500 text-white hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
 onClick={fetchResults}>
-              Show Analysis
+              Start Analysis
             </button></div>) : (
 <div></div>
 )}
