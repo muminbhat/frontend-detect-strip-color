@@ -1,6 +1,117 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import colorNameList from "color-name-list";
+import swal from 'sweetalert2'
+import Loader from "./Loader";
+
 
 const Hero = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    sample_image: null,
+  });
+
+  const [sampleId, setSampleId] = useState(null);
+  const [name, setName] = useState(null)
+  const [results, setResults] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [btn, setBtn] = useState(false);
+
+  const handleSubmit = async (e) => {
+    setLoading(true);
+    e.preventDefault();
+
+    const formDataToSend = new FormData();
+    formDataToSend.append("name", formData.name);
+    formDataToSend.append("sample_image", formData.sample_image);
+
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/analyser/samples/add",
+        formDataToSend,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      // Log the 'id' field from the response
+      console.log("Full Response: ", response.data);
+      console.log("Response:", response.data.id);
+
+      // Set the sampleId state
+      setSampleId(response.data.id);
+      setName(response.data.name)
+      setFormData({ name: "", sample_image: null });
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+      setBtn(true)
+      swal.fire({
+        title: "Your Sample is Ready",
+        icon: "success",
+        toast: true,
+        timer: 6000,
+        position: "top-right",
+        timerProgressBar: false,
+        showConfirmButton: false,
+      });
+    } catch (error) {
+      console.error("Error:", error);
+      setLoading(false);
+      swal.fire({
+        title: "Something Went Wrong",
+        icon: "error",
+        toast: true,
+        timer: 6000,
+        position: "top-right",
+        timerProgressBar: false,
+        showConfirmButton: false,
+      });
+    }
+  };
+
+  const fetchResults = async () => {
+    setLoading(true);
+    try {
+      // Use the 'sampleId' state to fetch results for a specific sample
+      const response = await axios.get(
+        `http://127.0.0.1:8000/api/analyser/samples/${sampleId}/detail/`
+      );
+      setResults(response.data);
+      console.log(response.data);
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      console.log("An error occurred while fetching the results.", err);
+      swal.fire({
+        title: "Something Went Wrong",
+        icon: "error",
+        toast: true,
+        timer: 6000,
+        position: "top-right",
+        timerProgressBar: false,
+        showConfirmButton: false,
+      });
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value, files } = e.target;
+    const newValue = name === "sample_image" ? files[0] : value;
+
+    setFormData({
+      ...formData,
+      [name]: newValue,
+    });
+  };
+
+  const colorMap = {};
+  colorNameList.forEach((color) => {
+    colorMap[color.rgb] = color.name;
+  });
+
   return (
     <>
       {/* Hero */}
@@ -13,7 +124,7 @@ const Hero = () => {
                 Empower Your Diagnosis
               </p>
               <h1 className="text-3xl text-gray-800 font-bold sm:text-5xl lg:text-6xl lg:leading-tight dark:text-gray-200">
-              Welcome to ColorStrip Analyzer{" "}
+                Welcome to ColorStrip Analyzer{" "}
                 <span className="text-teal-500">Precise Analysis! </span>
               </h1>
             </div>
@@ -63,7 +174,11 @@ const Hero = () => {
             </div>
             {/* End Avatar Group */}
             {/* Form */}
-            <form>
+            <form onSubmit={handleSubmit}>
+            {loading? ( <div 
+            className="flex flex-auto flex-col justify-center items-center p-4 md:p-5">
+              <Loader />
+              </div> ) : (
               <div className="mx-auto max-w-2xl sm:flex sm:space-x-3 p-3 bg-white border rounded-lg shadow-lg shadow-gray-100 dark:bg-slate-900 dark:border-gray-700 dark:shadow-gray-900/[.2]">
                 <div className="pb-2 sm:pb-0 sm:flex-[1_0_0%]">
                   <label
@@ -78,6 +193,8 @@ const Hero = () => {
                     className="py-3 px-4 block w-full border-transparent rounded-md text-sm focus:border-teal-500 focus:ring-teal-500 sm:p-4 dark:bg-slate-900 dark:border-transparent dark:text-gray-400"
                     placeholder="Your Name"
                     name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
                   />
                 </div>
                 <div className="pt-2 sm:pt-0 sm:pl-3 border-t border-gray-200 sm:border-t-0 sm:border-l sm:flex-[1_0_0%] dark:border-gray-700">
@@ -87,9 +204,10 @@ const Hero = () => {
                     </label>
                     <input
                       type="file"
-                      name="file-input"
+                      name="sample_image"
                       accept="image/*"
                       id="file-input"
+                      onChange={handleInputChange}
                       className="block w-full border bg-orange-400 border-gray-200 shadow-sm rounded-md text-sm focus:z-10 focus:border-teal-500 focus:ring-teal-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400
     file:bg-transparent file:border-0
     file:bg-gray-100 file:mr-4
@@ -99,16 +217,52 @@ const Hero = () => {
                   </>
                 </div>
                 <div className="pt-2 sm:pt-0 grid sm:block sm:flex-[0_0_auto]">
-                  <a
-                    className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-teal-500 text-white hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 transition-all text-sm sm:p-4 dark:focus:ring-offset-gray-800"
+                  <button
+                    type="submit"
+                    className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md bg-teal-300 border border-transparent font-semibold text-black-500 hover:text-white hover:bg-teal-600 focus:outline-none focus:ring-2 ring-offset-white focus:ring-purple-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
                     href="/"
                   >
-                    Get started
-                  </a>
+                    Upload{" "}
+                  </button>
                 </div>
               </div>
+            )}
             </form>
             {/* End Form */}
+
+            {/* Display the results */}
+{btn ? ( <div className="flex flex-auto flex-col justify-center items-center p-4 md:p-5"><button 
+className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-teal-500 text-white hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
+onClick={fetchResults}>
+              Show Analysis
+            </button></div>) : (
+<div></div>
+)}
+            {/* <button 
+            className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-teal-500 text-white hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 transition-all text-sm sm:p-4 dark:focus:ring-offset-gray-800"
+            onClick={fetchResults}>Fetch Results</button> */}
+
+            {results && (
+              <div className="flex flex-auto flex-col justify-center items-center p-4 md:p-5">
+                <h2 className="text-gray-800 dark:text-gray-200">Showing Results For: <span className="font-semibold text-gray-800 dark:text-gray-200">{name}</span></h2>
+                <div className="flex flex-auto flex-col justify-center items-center p-4 md:p-5">
+                  {results.colors.map((color, index) => (
+                    <div key={index}>
+                      <div
+                        style={{
+                          backgroundColor: `rgb(${color.join(",")})`,
+                          width: "50px",
+                          height: "50px",
+                          borderRadius: "10px",
+                          marginTop: "5px"
+                        }}
+                      ></div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* SVG Element */}
             <div
               className="hidden absolute top-2/4 left-0 transform -translate-y-2/4 -translate-x-40 md:block lg:-translate-x-80"
