@@ -49,7 +49,7 @@ const Hero = () => {
       }, 1000);
       setBtn(true)
       swal.fire({
-        title: "Ready For Analyses",
+        title: "Ready For Analysis",
         icon: "success",
         toast: true,
         timer: 6000,
@@ -191,8 +191,9 @@ const Hero = () => {
                     type="text"
                     id="hs-hero-name-1"
                     className="py-3 px-4 block w-full border-transparent rounded-md text-sm focus:border-teal-500 focus:ring-teal-500 sm:p-4 dark:bg-slate-900 dark:border-transparent dark:text-gray-400"
-                    placeholder="Your Name"
+                    placeholder="Your Name*"
                     name="name"
+                    required
                     value={formData.name}
                     onChange={handleInputChange}
                   />
@@ -207,6 +208,7 @@ const Hero = () => {
                       name="sample_image"
                       accept="image/*"
                       id="file-input"
+                      required
                       onChange={handleInputChange}
                       className="block w-full border bg-orange-400 border-gray-200 shadow-sm rounded-md text-sm focus:z-10 focus:border-teal-500 focus:ring-teal-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400
     file:bg-transparent file:border-0
@@ -222,7 +224,7 @@ const Hero = () => {
                     className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md bg-teal-300 border border-transparent font-semibold text-black-500 hover:text-white hover:bg-teal-600 focus:outline-none focus:ring-2 ring-offset-white focus:ring-purple-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"
                     href="/"
                   >
-                    Get Started{" "}
+                    Upload{" "}
                   </button>
                 </div>
               </div>

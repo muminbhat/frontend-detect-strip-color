@@ -23,7 +23,7 @@ const FeatureCard = () => {
                 >
                   <button
                     type="button"
-                    className="hs-tab-active:bg-white hs-tab-active:shadow-md hs-tab-active:hover:border-transparent text-left hover:bg-gray-200 p-4 md:p-5 rounded-xl dark:hs-tab-active:bg-slate-900 dark:hover:bg-gray-700 active"
+                    className="hs-tab-active:bg-white hs-tab-active:shadow-md hs-tab-active:hover:border-transparent text-left hover:bg-gray-200 p-4 md:p-5 rounded-xl dark:hs-tab-active:bg-slate-900 dark:hover:bg-gray-700"
                     id="tabs-with-card-item-1"
                     data-hs-tab="#tabs-with-card-1"
                     aria-controls="tabs-with-card-1"
@@ -88,7 +88,7 @@ const FeatureCard = () => {
                   </button>
                   <button
                     type="button"
-                    className="hs-tab-active:bg-white hs-tab-active:shadow-md hs-tab-active:hover:border-transparent text-left hover:bg-gray-200 p-4 md:p-5 rounded-xl dark:hs-tab-active:bg-slate-900 dark:hover:bg-gray-700"
+                    className=" hs-tab-active:bg-white hs-tab-active:shadow-md hs-tab-active:hover:border-transparent text-left hover:bg-gray-200 p-4 md:p-5 rounded-xl dark:hs-tab-active:bg-slate-900 dark:hover:bg-gray-700"
                     id="tabs-with-card-item-3"
                     data-hs-tab="#tabs-with-card-3"
                     aria-controls="tabs-with-card-3"
