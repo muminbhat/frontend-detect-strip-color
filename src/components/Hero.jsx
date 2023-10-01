@@ -3,6 +3,7 @@ import axios from "axios";
 import colorNameList from "color-name-list";
 import swal from 'sweetalert2'
 import Loader from "./Loader";
+import Banner from "./Banner";
 
 
 const Hero = () => {
@@ -116,6 +117,7 @@ const Hero = () => {
 
   return (
     <>
+    <Banner />
       {/* Hero */}
       <div className="overflow-hidden">
         <div className="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-20">
