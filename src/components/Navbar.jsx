@@ -69,13 +69,13 @@ const Navbar = () => {
         </Link>
         <a
           className="font-medium text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500"
-          href="https://muminbhat.com/" target='blank'
+          // href="https://muminbhat.com/" target='blank'
         >
           Services
         </a>
         <a
           className="font-medium text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500"
-          href="mailto:mumin.fayaz05@gmail.com"
+          // href="mailto:mumin.fayaz05@gmail.com"
         >
           Contact
         </a>
