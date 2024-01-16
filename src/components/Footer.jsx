@@ -57,19 +57,19 @@ const Footer = () => {
           <div className="md:text-right space-x-2">
             <a
               className="inline-flex justify-center items-center w-8 h-8 text-center text-gray-500 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white transition dark:text-gray-500 dark:hover:text-gray-200 dark:hover:bg-gray-800 dark:focus:ring-offset-slate-900"
-              href="https://instagram.com/_.mumin"
+              // href="https://instagram.com/_.mumin"
             >
               <p className="pr-20">Instagarm</p>
             </a>
             <a
               className="inline-flex justify-center items-center w-8 h-8 text-center text-gray-500 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white transition dark:text-gray-500 dark:hover:text-gray-200 dark:hover:bg-gray-800 dark:focus:ring-offset-slate-900"
-              href="https://github.com/muminbhat/"
+              // href="https://github.com/muminbhat/"
             >
               <p>Github</p>
             </a>
             <a
               className="inline-flex justify-center items-center w-8 h-8 text-center text-gray-500 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-white transition dark:text-gray-500 dark:hover:text-gray-200 dark:hover:bg-gray-800 dark:focus:ring-offset-slate-900"
-              href="https://www.linkedin.com/in/mumin-bhat/"
+              // href="https://www.linkedin.com/in/mumin-bhat/"
             >
               <p className="pl-20">Linkedin</p>
             </a>
