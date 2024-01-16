@@ -12,7 +12,7 @@ const Maintenance = () => {
       </h1>
       <p className="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
       Some parts of <span style={{fontWeight: "bold"}}>StripU</span> are currently down for planned maintenance. We'll be back with the latest blogs and new features this week. Follow us on Instagram for latest updates.
-      contact <a style={{color: "#155E75", fontWeight: "bold"}} href='https://muminbhat.com'>MuminBhat.com</a> for suggestions
+      {/* contact <a style={{color: "#155E75", fontWeight: "bold"}} href='https://muminbhat.com'>MuminBhat.com</a> for suggestions */}
       </p>
 
       <a
