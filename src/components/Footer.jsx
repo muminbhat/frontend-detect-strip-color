@@ -20,9 +20,9 @@ const Footer = () => {
             </Link>
             <p className="text-gray-400 text-sm">
               {currentYear} © copyrights.{" "}
-              <a href="https://muminbhat.com" target="blank">
-                <span className="text-blue-500 ">Mumin Bhat </span>
-              </a>
+              
+                <span className="text-blue-500 "></span>
+              
             </p>
           </div>
           {/* End Col */}

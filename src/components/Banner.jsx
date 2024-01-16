@@ -42,7 +42,7 @@ const Banner = () => {
           </div>
           <p className="mt-2 text-sm text-gray-800 dark:text-gray-200">
             The Web Application is unable to process analysis function due to
-            the free plan being exhausted. I am trying to fix the error as soon as possible. contact{" "}
+            the free plan being exhausted. I am trying to fix the error as soon as possible. Contact{" "}
             <a
               className="inline-flex items-center gap-x-1.5 text-blue-600 decoration-2 hover:underline font-medium"
               href="muminbhat.com"
